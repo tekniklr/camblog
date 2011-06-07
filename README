@@ -1,0 +1,65 @@
+Get pictures from your phone to your website using the height of 2004 
+technology!
+
+I've replaced this system with twitter/instagram/etc so don't use it 
+anymore but am providing it for archival/informational purposes.
+
+
+FILES
+---------------------------------------------------------------
+  * simple_version.pl: the original version written in 2004.
+  * camblog.pl: the version I was using up to the time when I decided I'd 
+    be better off with Instagram
+  * camblog.php: the companion file that reads the image index generated 
+    by one of the above perl scripts and serves the images on your website
+
+
+REQUIREMENTS
+---------------------------------------------------------------
+  * A cellphone that can take pictures and send them to an email address.
+  * A web host that provides local mail and procmail capabilities.
+  * CPAN modules for the basic version:
+      MIME::Parser
+      Date::Manip
+  * CPAN modules for the more complex twitter/flickr/url shortening 
+    version:
+      MIME::Parser
+      Date::Manip
+      Getopt::Long
+      Net::Twitter
+      WWW::Shorten::Bitly
+      WWW::Shorten::isgd
+      HTML::Strip
+      Flickr::Upload
+
+
+CONFIGURATION (simple_version.pl)
+---------------------------------------------------------------
+  1. Add this to your .procmailrc:
+      :0:
+      * ^TO_${photoblog_email}
+      |/path/to/simple_version.pl
+  2. Edit the basic configuration at the top of simple_version.pl
+  3. Use camblog.php as a general guide. It's highly customized to the way 
+     my site was set up while I was using this system.
+
+CONFIGURATION (camblog.pl)
+---------------------------------------------------------------
+  1. Add this to your .procmailrc:
+     :0:
+     * ^TO_${photoblog_email}
+     |/path/to/camblog.pl
+     :0:
+     * ^TO_${photoblog_email_twitter}
+     |/path/to/camblog.pl -t
+     :0:
+     * ^TO_${photoblog_email_flickr}
+     |/path/to/camblog.pl -f
+     :0:
+     * ^TO_${photoblog_email_twitter_flickr}
+     |/path/to/camblog.pl -t -f
+  2. Edit the basic configuration at the top of camblog.pl.
+  3. You will need to get a bit.ly api key, twitter oauth token info, and 
+     flickr auth info.
+  4. Use camblog.php as a general guide. It's highly customized to the way 
+     my site was set up while I was using this system.
